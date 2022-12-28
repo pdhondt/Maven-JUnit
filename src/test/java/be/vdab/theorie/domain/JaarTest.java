@@ -31,4 +31,16 @@ public class JaarTest {
     void toStringGeeftHetJaarAlsTekst() {
         assertThat(new Jaar(2022)).hasToString("2022");
     }
+    @Test
+    void jarenMetHetzelfdeJaartalZijnGelijk() {
+        assertThat(new Jaar(2015)).isEqualTo(new Jaar(2015));
+    }
+    @Test
+    void jarenMetEenVerschillendJaartalZijnVerschillend() {
+        assertThat(new Jaar(2015)).isNotEqualTo(new Jaar(2016));
+    }
+    @Test
+    void deHashCodeVanGelijkeJarenIsGelijk() {
+        assertThat(new Jaar(2015)).hasSameHashCodeAs(new Jaar(2015));
+    }
 }

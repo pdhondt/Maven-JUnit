@@ -1,5 +1,7 @@
 package be.vdab.theorie.domain;
 
+import java.util.Objects;
+
 public class Jaar {
     private final int jaar;
     public Jaar(int jaar) {
@@ -11,5 +13,13 @@ public class Jaar {
     @Override
     public String toString() {
         return String.valueOf(jaar);
+    }
+    @Override
+    public boolean equals(Object object) {
+        return object instanceof Jaar anderJaar && jaar == anderJaar.jaar;
+    }
+    @Override
+    public int hashCode() {
+        return Objects.hash(jaar);
     }
 }
