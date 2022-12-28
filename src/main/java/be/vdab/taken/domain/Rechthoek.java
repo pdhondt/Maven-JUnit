@@ -7,6 +7,10 @@ public class Rechthoek {
     private final int breedte;
 
     public Rechthoek(int lengte, int breedte) {
+        if (lengte < 1 || breedte < 1 || lengte < breedte) {
+            throw new IllegalArgumentException("Lengte en breedte mogen niet negatief zijn, " +
+                    "en lengte mag niet kleiner zijn dan breedte");
+        }
         this.lengte = lengte;
         this.breedte = breedte;
     }

@@ -3,6 +3,7 @@ package be.vdab.taken.domain;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 public class RechthoekTest {
     private Rechthoek rechthoek;
@@ -24,12 +25,29 @@ public class RechthoekTest {
     }
     @Test
     void tweeRechthoekenZijnVerschillendWanneerLengteOfBreedteVerschillendZijn() {
-        assertThat(rechthoek).isNotEqualTo(new Rechthoek(5, 6));
+        assertThat(rechthoek).isNotEqualTo(new Rechthoek(5, 3));
         assertThat(rechthoek).isNotEqualTo(new Rechthoek(6, 4));
     }
     @Test
     void tweeRechthoekenMetDezelfdeAfmetingenGevenDezelfdeHashcode() {
         assertThat(rechthoek).hasSameHashCodeAs(new Rechthoek(5, 4));
     }
-
+    @Test
+    void rechthoekConstructorMagGeenNegatieveLengteAanvaarden() {
+        assertThatIllegalArgumentException().isThrownBy(
+                () -> new Rechthoek(-5, 4)
+        );
+    }
+    @Test
+    void rechthoekConstructorMagGeenNegatieveBreedteAanvaarden() {
+        assertThatIllegalArgumentException().isThrownBy(
+                () -> new Rechthoek(5, -4)
+        );
+    }
+    @Test
+    void rechthoekConstructorMagGeenLengteKleinerDanDeBreedteAanvaarden() {
+        assertThatIllegalArgumentException().isThrownBy(
+                () -> new Rechthoek(4, 5)
+        );
+    }
 }
